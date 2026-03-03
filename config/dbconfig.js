@@ -1,8 +1,9 @@
 module.exports = {
-    host: "104.154.141.198",
+    host: "127.0.0.1",
     port: 3306,
     user: "root",
-    password: "vistaarnksh",
-    database: "project"
+    password: "12345",
+    database: "Velastra",
+    timezone: '+05:30',
 }
 

@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const config = require('../config/dbconfig'); // Import database config
 
 // Create a MySQL connection pool
