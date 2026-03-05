@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const sectorSchema = new mongoose.Schema(
   {
-    sector_name: { type: String, required: true },
+    sector_name: { type: String, required: true, unique: true, index: true },
   },
   { timestamps: true },
 );

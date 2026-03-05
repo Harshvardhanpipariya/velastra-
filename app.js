@@ -7,8 +7,7 @@ const cors = require("cors");
 const fs = require("fs");
 const db = require("./dao/dao");
 require("dotenv").config();
-const app = express();   // 🔥 MUST COME BEFORE app.use()
-const connectMongoDB = require("./dao/database");
+const app = express();
 
 app.use(cors());
 app.use(express.json());
@@ -97,9 +96,14 @@ app.get("/", (req, res) => {
 
 const authRoutes = require("./v2_Routes/authRoutes");
 const authenticateToken = require("./v2_Middlewares/authMiddleware");
+// 🔥 MUST COME BEFORE app.use()
+const connectMongoDB = require("./dao/database");
 app.use("/v2/auth", authRoutes);
-connectMongoDB();
+app.use("/v2/sectorRoutes", require("./v2_Routes/sectorRoutes"));
+app.use("/v2/companyRoutes", require("./v2_Routes/companyRoutes"));
+app.use("/v2/regionsRoutes", require("./v2_Routes/regionRoutes"));
 
+connectMongoDB();
 
 // Start server
 app.listen(PORT, "0.0.0.0", () => {

@@ -3,21 +3,19 @@ const mongoose = require("mongoose");
 
 const realtimeSensorDataSchema = new mongoose.Schema(
   {
-    // 🔥 Fully dynamic metadata
     meta: {
       type: Map,
       of: mongoose.Schema.Types.Mixed,
       required: true,
     },
 
-    // Time-series required field
     timestamp: {
       type: Date,
       required: true,
       default: Date.now,
+      index: true,
     },
 
-    // 🔥 Fully dynamic sensor payload
     sensors: {
       type: Map,
       of: mongoose.Schema.Types.Mixed,
@@ -28,5 +26,8 @@ const realtimeSensorDataSchema = new mongoose.Schema(
     collection: "realtime_sensor_data",
   },
 );
+
+realtimeSensorDataSchema.index({ timestamp: -1 });
+realtimeSensorDataSchema.index({ "meta.device": 1, timestamp: -1 });
 
 module.exports = mongoose.model("RealtimeSensorData", realtimeSensorDataSchema);
