@@ -4,9 +4,24 @@ const mongoose = require("mongoose");
 const realtimeSensorDataSchema = new mongoose.Schema(
   {
     meta: {
-      type: Map,
-      of: mongoose.Schema.Types.Mixed,
-      required: true,
+      device_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Device",
+        required: true,
+        index: true,
+      },
+
+      mounted_to: {
+        type: String,
+        required: true,
+      },
+
+      region_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Region",
+        required: true,
+        index: true,
+      },
     },
 
     timestamp: {
@@ -28,6 +43,7 @@ const realtimeSensorDataSchema = new mongoose.Schema(
 );
 
 realtimeSensorDataSchema.index({ timestamp: -1 });
-realtimeSensorDataSchema.index({ "meta.device": 1, timestamp: -1 });
+// Index on device_id and timestamp to efficiently query the latest data point per device
+realtimeSensorDataSchema.index({ "meta.device_id": 1, timestamp: -1 });
 
 module.exports = mongoose.model("RealtimeSensorData", realtimeSensorDataSchema);

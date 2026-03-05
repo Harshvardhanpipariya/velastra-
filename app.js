@@ -102,6 +102,7 @@ app.use("/v2/auth", authRoutes);
 app.use("/v2/sectorRoutes", require("./v2_Routes/sectorRoutes"));
 app.use("/v2/companyRoutes", require("./v2_Routes/companyRoutes"));
 app.use("/v2/regionsRoutes", require("./v2_Routes/regionRoutes"));
+app.use("/v2/dataRoutes", require("./v2_Routes/dataRoutes"));
 
 connectMongoDB();
 

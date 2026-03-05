@@ -6,11 +6,10 @@ const deviceSchema = new mongoose.Schema(
     device_name: { type: String, required: true, index: true },
     installation_date: Date,
     software_version: String,
-    region: {
+    region_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Region",
       required: true,
-      index: true,
     },
   },
   { timestamps: true },
