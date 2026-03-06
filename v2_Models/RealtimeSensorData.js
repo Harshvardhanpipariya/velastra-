@@ -40,6 +40,7 @@ const realtimeSensorDataSchema = new mongoose.Schema(
   {
     collection: "realtime_sensor_data",
   },
+  { versionKey: false },
 );
 
 realtimeSensorDataSchema.index({ timestamp: -1 });
