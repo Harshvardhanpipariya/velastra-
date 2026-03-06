@@ -4,6 +4,9 @@ const {
   insertRealtimeData,
 } = require("../v2_Controllers/Real_Time_Data_Controller/DataController");
 
+
+
+
 /// Example of the expected JSON body for inserting real-time sensor data sensors can be dynamic
 // and may include various types of sensor readings
 // id is device id, mounted_to is the vehicle / machine where our device pluggedin,
